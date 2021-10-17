@@ -1,18 +1,19 @@
 import { Fragment } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import { data } from '../../dummy-data';
 
 import PostItem from './PostItem';
 import classes from './PostList.module.css';
 
-const sortPosts = (posts: any, ascending: any) => {
-  return posts.sort((postA: any, postB: any) => {
-    if (ascending) {
-      return postA.id > postB.id ? 1 : -1;
-    } else {
-      return postA.id < postB.id ? 1 : -1;
-    }
-  });
-};
+// const sortPosts = (posts: any, ascending: any) => {
+//   return posts.sort((postA: any, postB: any) => {
+//     if (ascending) {
+//       return postA.id > postB.id ? 1 : -1;
+//     } else {
+//       return postA.id < postB.id ? 1 : -1;
+//     }
+//   });
+// };
 
 const PostList = (props: any) => {
   const history = useHistory();
@@ -22,7 +23,7 @@ const PostList = (props: any) => {
 
   const isSortingAscending = queryParams.get('sort') === 'asc';
 
-  const sortedPosts = sortPosts(props.posts, isSortingAscending);
+  // const sortedPosts = sortPosts(props.posts, isSortingAscending);
 
   const changeSortingHandler = () => {
     history.push({
@@ -39,7 +40,7 @@ const PostList = (props: any) => {
         </button>
       </div>
       <ul className={classes.list}>
-        {sortedPosts.map((post: any) => (
+        {data.map((post: any) => (
           <PostItem
             key={post.id}
             id={post.id}

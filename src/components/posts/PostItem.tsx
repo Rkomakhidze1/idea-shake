@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import classes from './postItem.module.css';
+import classes from './PostItem.module.css';
 
 const PostItem = (props: any) => {
   return (
