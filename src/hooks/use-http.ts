@@ -41,7 +41,7 @@ const httpReducer = (state: HttpState, action: HttpAction) => {
 };
 
 const useHttp = (
-  requestFunction: (data: any) => Object | null,
+  requestFunction: (data?: any) => Promise<any>,
   startWithPending = false
 ) => {
   const [httpState, dispatch] = useReducer(httpReducer, {
@@ -51,7 +51,7 @@ const useHttp = (
   });
 
   const sendRequest = useCallback(
-    async function (requestData) {
+    async function (requestData?: any) {
       dispatch({ type: 'SEND' });
       try {
         const responseData = await requestFunction(requestData);

@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { data } from '../../dummy-data';
+import { Post } from '../../types';
 
 import PostItem from './PostItem';
 import classes from './PostList.module.css';
@@ -16,10 +16,10 @@ import classes from './PostList.module.css';
 // };
 
 interface Porps {
-  posts: Object;
+  posts: Post[];
 }
 
-const PostList = (props: Porps) => {
+const PostList = ({ posts }: Porps) => {
   const history = useHistory();
   const location = useLocation();
 
@@ -44,11 +44,11 @@ const PostList = (props: Porps) => {
         </button>
       </div>
       <ul className={classes.list}>
-        {data.map((post: any) => (
+        {posts.map((post: any) => (
           <PostItem
             key={post.id}
             id={post.id}
-            author={post.author}
+            author={post.author.username}
             text={post.text}
           />
         ))}

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import classes from './NoPostsFound.module.css';
+import classes from './NoPostFound.module.css';
 
-const NoPostsFound = () => {
+const NoPostFound = () => {
   return (
     <div className={classes.noposts}>
       <p>No Posts found!</p>
@@ -13,4 +13,4 @@ const NoPostsFound = () => {
   );
 };
 
-export default NoPostsFound;
+export default NoPostFound;
