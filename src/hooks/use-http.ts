@@ -2,17 +2,17 @@ import { useReducer, useCallback } from 'react';
 
 interface HttpState {
   status: string | null;
-  data: any;
+  data: Object | null;
   error: string | null;
 }
 
-interface Action {
+interface HttpAction {
   type: string;
   responseData?: any;
   errorMessage?: any;
 }
 
-const httpReducer: React.Reducer<HttpState, Action> = (state, action) => {
+const httpReducer = (state: HttpState, action: HttpAction) => {
   if (action.type === 'SEND') {
     return {
       data: null,
@@ -41,7 +41,7 @@ const httpReducer: React.Reducer<HttpState, Action> = (state, action) => {
 };
 
 const useHttp = (
-  requestFunction: (data: any) => void,
+  requestFunction: (data: any) => Object | null,
   startWithPending = false
 ) => {
   const [httpState, dispatch] = useReducer(httpReducer, {

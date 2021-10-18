@@ -15,7 +15,11 @@ import classes from './PostList.module.css';
 //   });
 // };
 
-const PostList = (props: any) => {
+interface Porps {
+  posts: Object;
+}
+
+const PostList = (props: Porps) => {
   const history = useHistory();
   const location = useLocation();
 

@@ -5,7 +5,12 @@ import Card from '../UI/Card';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import classes from './PostForm.module.css';
 
-const PostForm = (props: any) => {
+interface Props {
+  onAddPost?: (arg: { author?: string; text?: string }) => void;
+  isLoading?: boolean;
+}
+
+const PostForm = (props: Props) => {
   const [isEntering, setIsEntering] = useState(false);
 
   const authorInputRef = useRef<HTMLInputElement>(null);
@@ -19,7 +24,8 @@ const PostForm = (props: any) => {
 
     // optional: Could validate here
 
-    props.onAddPost({ author: enteredAuthor, text: enteredText });
+    props.onAddPost &&
+      props.onAddPost({ author: enteredAuthor, text: enteredText });
   }
 
   const finishEnteringHandler = () => {

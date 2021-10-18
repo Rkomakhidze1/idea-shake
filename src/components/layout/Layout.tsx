@@ -3,7 +3,11 @@ import { Fragment } from 'react';
 import classes from './Layout.module.css';
 import MainNavigation from './MainNavigation';
 
-const Layout = (props: any) => {
+interface Props {
+  children: JSX.Element;
+}
+
+const Layout = (props: Props) => {
   return (
     <Fragment>
       <MainNavigation />

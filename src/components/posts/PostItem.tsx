@@ -2,7 +2,13 @@ import { Link } from 'react-router-dom';
 
 import classes from './PostItem.module.css';
 
-const PostItem = (props: any) => {
+interface Props {
+  text: string;
+  author: string;
+  id: number | string;
+}
+
+const PostItem = (props: Props) => {
   return (
     <li className={classes.item}>
       <figure>

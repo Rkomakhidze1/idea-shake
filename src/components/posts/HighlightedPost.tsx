@@ -1,6 +1,11 @@
 import classes from './HighlightedPost.module.css';
 
-const HighlightedPost = (props: any) => {
+interface Props {
+  text: string;
+  author: string;
+}
+
+const HighlightedPost = (props: Props) => {
   return (
     <figure className={classes.post}>
       <p>{props.text}</p>
