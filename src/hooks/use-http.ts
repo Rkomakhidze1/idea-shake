@@ -1,4 +1,5 @@
 import { useReducer, useCallback } from 'react';
+import { Post } from '../types';
 
 interface HttpState {
   status: string | null;
@@ -41,7 +42,7 @@ const httpReducer = (state: HttpState, action: HttpAction) => {
 };
 
 const useHttp = (
-  requestFunction: (data?: any) => Promise<any>,
+  requestFunction: (data?: any) => Promise<Post[] | Post>,
   startWithPending = false
 ) => {
   const [httpState, dispatch] = useReducer(httpReducer, {

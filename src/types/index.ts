@@ -1,5 +1,8 @@
 export interface Post {
   id: number;
   text: string;
-  authror: string;
+  author: {
+    id: number;
+    username: string;
+  };
 }

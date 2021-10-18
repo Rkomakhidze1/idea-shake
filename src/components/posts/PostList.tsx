@@ -44,7 +44,7 @@ const PostList = ({ posts }: Porps) => {
         </button>
       </div>
       <ul className={classes.list}>
-        {posts.map((post: any) => (
+        {posts.map((post: Post) => (
           <PostItem
             key={post.id}
             id={post.id}
