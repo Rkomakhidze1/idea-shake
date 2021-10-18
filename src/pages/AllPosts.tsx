@@ -4,7 +4,6 @@ import PostList from '../components/posts/PostList';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 import useHttp from '../hooks/use-http';
 import { getAllPosts } from '../lib/api';
-import { login } from '../store/auth';
 
 const AllPosts = () => {
   const {

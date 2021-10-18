@@ -7,8 +7,8 @@ import LoadingSpinner from '../components/UI/LoadingSpinner';
 import useHttp from '../hooks/use-http';
 
 const PostDetail = () => {
-  const params = useParams<{ PostId: string }>();
-  const { PostId } = params;
+  const params = useParams<{ postId: string }>();
+  const { postId } = params;
 
   const {
     sendRequest,
@@ -18,8 +18,8 @@ const PostDetail = () => {
   } = useHttp(getSinglePost, true);
 
   useEffect(() => {
-    sendRequest(PostId);
-  }, [sendRequest, PostId]);
+    sendRequest(postId);
+  }, [sendRequest, postId]);
 
   if (status === 'pending') {
     return (

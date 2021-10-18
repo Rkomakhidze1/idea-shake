@@ -22,8 +22,6 @@ const PostForm = (props: Props) => {
     const enteredAuthor = authorInputRef?.current?.value;
     const enteredText = textInputRef?.current?.value;
 
-    // optional: Could validate here
-
     props.onAddPost &&
       props.onAddPost({ author: enteredAuthor, text: enteredText });
   }
