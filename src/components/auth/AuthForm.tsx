@@ -1,7 +1,4 @@
 import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
-import { login } from '../../store/auth';
 
 import Card from '../UI/Card';
 import LoadingSpinner from '../UI/LoadingSpinner';
@@ -13,8 +10,6 @@ interface Props {
 }
 
 const AuthForm = (props: Props) => {
-  const dispatch = useDispatch();
-  const history = useHistory();
   const usernameInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 

@@ -7,7 +7,7 @@ import { signin } from '../lib/api';
 import { login } from '../store/auth';
 
 const Signin = () => {
-  const { sendRequest, status, data } = useHttp(signin);
+  const { sendRequest, status, data, error } = useHttp(signin);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -21,11 +21,12 @@ const Signin = () => {
     if (token) {
       logUserIn();
     }
-    if (status === 'completed' && data.access_token) {
+
+    if (status === 'completed' && !error && data.access_token) {
       localStorage.setItem('token', data.access_token);
       logUserIn();
     }
-  }, [status, history, dispatch, data, logUserIn]);
+  }, [status, history, dispatch, data, logUserIn, error]);
 
   const signinHandler = (payload: { username?: string; password?: string }) => {
     sendRequest(payload);

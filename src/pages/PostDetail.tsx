@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { data } from '../dummy-data';
 import HighlightedPost from '../components/posts/HighlightedPost';
 import { useParams } from 'react-router';
 import { getSinglePost } from '../lib/api';
