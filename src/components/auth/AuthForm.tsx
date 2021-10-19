@@ -1,26 +1,34 @@
 import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
+import { login } from '../../store/auth';
 
 import Card from '../UI/Card';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import classes from './AuthForm.module.css';
 
 interface Props {
-  onAddAuth?: (arg: { author?: string; text?: string }) => void;
+  onSigninRequest?: (payload: { username?: string; password?: string }) => void;
   isLoading?: boolean;
 }
 
 const AuthForm = (props: Props) => {
-  const authorInputRef = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const usernameInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
   function submitFormHandler(event: any) {
     event.preventDefault();
 
-    const enteredAuthor = authorInputRef?.current?.value;
-    const enteredText = passwordInputRef?.current?.value;
+    const enteredUsername = usernameInputRef?.current?.value;
+    const enteredPassword = passwordInputRef?.current?.value;
 
-    props.onAddAuth &&
-      props.onAddAuth({ author: enteredAuthor, text: enteredText });
+    props.onSigninRequest &&
+      props.onSigninRequest({
+        username: enteredUsername,
+        password: enteredPassword,
+      });
   }
 
   return (
@@ -34,7 +42,7 @@ const AuthForm = (props: Props) => {
 
         <div className={classes.control}>
           <label htmlFor="username">Username</label>
-          <input type="text" id="username" ref={authorInputRef} />
+          <input type="text" id="username" ref={usernameInputRef} />
         </div>
         <div className={classes.control}>
           <label htmlFor="password">Password</label>

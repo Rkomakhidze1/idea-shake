@@ -5,6 +5,7 @@ import NewPost from './pages/NewPost';
 import NotFound from './pages/NotFound';
 import Layout from './components/layout/Layout';
 import Signin from './pages/Signin';
+import IsAuth from './lib/IsAuth';
 
 function App() {
   return (
@@ -14,13 +15,19 @@ function App() {
           <Redirect to="/posts" />
         </Route>
         <Route path="/posts" exact>
-          <AllPosts />
+          <IsAuth>
+            <AllPosts />
+          </IsAuth>
         </Route>
         <Route path="/posts/:postId">
-          <PostDetail />
+          <IsAuth>
+            <PostDetail />
+          </IsAuth>
         </Route>
         <Route path="/new-post">
-          <NewPost />
+          <IsAuth>
+            <NewPost />
+          </IsAuth>
         </Route>
         <Route path="/signin">
           <Signin />

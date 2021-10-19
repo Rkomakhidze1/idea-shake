@@ -22,3 +22,23 @@ export const getSinglePost = async (postId: string) => {
 
   return data as Post;
 };
+
+export const signin = async (payload: {
+  username?: string;
+  password?: string;
+}) => {
+  const response = await fetch(`${DOMAIN}/auth/signin`, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Something went wrong.');
+  }
+
+  return data as Post;
+};
