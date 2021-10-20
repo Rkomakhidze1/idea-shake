@@ -48,7 +48,7 @@ const PostList = ({ posts }: Porps) => {
           <PostItem
             key={post.id}
             id={post.id}
-            author={post.author.username}
+            author={post.author?.username}
             text={post.text}
           />
         ))}

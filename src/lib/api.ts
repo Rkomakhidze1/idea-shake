@@ -1,9 +1,14 @@
 import { Post } from '../types';
 
 const DOMAIN = 'http://localhost:3000';
+const token = localStorage.getItem('token');
 
 export const getAllPosts = async () => {
-  const response = await fetch(`${DOMAIN}/posts`);
+  const response = await fetch(`${DOMAIN}/posts`, {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  });
   const data = await response.json();
   if (!response.ok) {
     throw new Error(data.message || 'Could not fetch posts.');
@@ -13,7 +18,11 @@ export const getAllPosts = async () => {
 };
 
 export const getSinglePost = async (postId: string) => {
-  const response = await fetch(`${DOMAIN}/posts/${postId}`);
+  const response = await fetch(`${DOMAIN}/posts/${postId}`, {
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  });
   const data = await response.json();
 
   if (!response.ok) {
@@ -22,6 +31,24 @@ export const getSinglePost = async (postId: string) => {
 
   return data as Post;
 };
+
+export async function addPost(postData: { username: string; text: string }) {
+  const response = await fetch(`${DOMAIN}/posts`, {
+    method: 'POST',
+    body: JSON.stringify(postData),
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
+    },
+  });
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Could not create post.');
+  }
+
+  return data;
+}
 
 export const signin = async (payload: {
   username?: string;

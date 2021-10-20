@@ -1,29 +1,30 @@
 import { Fragment, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Prompt } from 'react-router-dom';
+import { RootState } from '../../store/store';
 
 import Card from '../UI/Card';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import classes from './PostForm.module.css';
 
 interface Props {
-  onAddPost?: (arg: { author?: string; text?: string }) => void;
+  onAddPost?: (payload: { author?: string; text?: string }) => void;
   isLoading?: boolean;
 }
 
 const PostForm = (props: Props) => {
+  const { username } = useSelector((state: RootState) => state.auth);
   const [isEntering, setIsEntering] = useState(false);
 
-  const authorInputRef = useRef<HTMLInputElement>(null);
   const textInputRef = useRef<HTMLTextAreaElement>(null);
 
   function submitFormHandler(event: any) {
     event.preventDefault();
 
-    const enteredAuthor = authorInputRef?.current?.value;
     const enteredText = textInputRef?.current?.value;
 
     props.onAddPost &&
-      props.onAddPost({ author: enteredAuthor, text: enteredText });
+      props.onAddPost({ author: username!, text: enteredText });
   }
 
   const finishEnteringHandler = () => {
@@ -56,7 +57,7 @@ const PostForm = (props: Props) => {
 
           <div className={classes.control}>
             <label htmlFor="author">Author</label>
-            <input type="text" id="author" ref={authorInputRef} />
+            <input type="text" disabled id="author" value={username!} />
           </div>
           <div className={classes.control}>
             <label htmlFor="text">Text</label>

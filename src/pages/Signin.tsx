@@ -11,20 +11,25 @@ const Signin = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const logUserIn = useCallback(() => {
-    dispatch(login());
-    history.push('/');
-  }, [dispatch, history]);
+  const logUserIn = useCallback(
+    (username: string) => {
+      dispatch(login(username));
+      history.push('/');
+    },
+    [dispatch, history]
+  );
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
     if (token) {
-      logUserIn();
+      logUserIn(username!);
     }
 
-    if (status === 'completed' && !error && data.access_token) {
-      localStorage.setItem('token', data.access_token);
-      logUserIn();
+    if (status === 'completed' && !error && data.accessToken) {
+      localStorage.setItem('token', data.accessToken);
+      localStorage.setItem('username', data.username);
+      logUserIn(data.username);
     }
   }, [status, history, dispatch, data, logUserIn, error]);
 

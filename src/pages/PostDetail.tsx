@@ -39,7 +39,7 @@ const PostDetail = () => {
   return (
     <HighlightedPost
       text={loadedPost.text}
-      author={loadedPost.author.username}
+      author={loadedPost.author?.username}
     />
   );
 };
