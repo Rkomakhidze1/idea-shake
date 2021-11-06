@@ -17,7 +17,7 @@ const PostItem = (props: Props) => {
         </div>
         <figcaption>{props.author}</figcaption>
       </figure>
-      <Link className="btn" to={`/Posts/${props.id}`}>
+      <Link className="btn" to={`/posts/${props.id}`}>
         View Fullscreen
       </Link>
     </li>

@@ -5,9 +5,15 @@ import PostForm from '../components/posts/PostForm';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 import useHttp from '../hooks/use-http';
 import { addPost } from '../lib/api';
+import { Post } from '../types';
 
 const NewPost = () => {
-  const { sendRequest, status, data: loadedPosts, error } = useHttp(addPost);
+  const {
+    sendRequest,
+    status,
+    data: loadedPosts,
+    error,
+  } = useHttp<Post>(addPost);
   const history = useHistory();
 
   const handleSubmit = async (payload: { author?: string; text?: string }) => {

@@ -4,6 +4,7 @@ import PostList from '../components/posts/PostList';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 import useHttp from '../hooks/use-http';
 import { getAllPosts } from '../lib/api';
+import { Post } from '../types';
 
 const AllPosts = () => {
   const {
@@ -11,7 +12,7 @@ const AllPosts = () => {
     status,
     data: loadedPosts,
     error,
-  } = useHttp(getAllPosts, true);
+  } = useHttp<Post>(getAllPosts, true);
 
   useEffect(() => {
     sendRequest();
